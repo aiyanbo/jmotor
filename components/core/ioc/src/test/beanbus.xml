@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans singleton="" autoWire="" initMethod="">
+    <improt src=""/>
+    <properties src="" global=""/>
+    <properties global="">
+        <set id="" type="java.util.HashSet" valueType="" singleton="">
+            <entry value=""/>
+            <entry value=""/>
+            <entry value=""/>
+            <entry value=""/>
+        </set>
+        <array id="" valueType="">
+            <entry value=""/>
+        </array>
+        <map id="" type="java.util.HashMap" keyType="java.lang.String" valueType="java.lang.String">
+            <entry key="" value="" ref=""/>
+        </map>
+        <list id="" type="java.util.ArrayList" valueType="java.lang.String">
+            <entry value=""/>
+        </list>
+        <description>define properties</description>
+    </properties>
+    <bean id="" class="" parent="" abstract="" singleton="" autoWire="" initMethod="">
+        <!--Can only support Number and String type-->
+        <property name="" value=""/>
+        <property name="" value="${author.name}"/>
+        <property name="" ref=""/>
+        <property name="">
+            <list type="java.util.ArrayList" valueType="java.lang.String">
+                <entry value="${import.url}"/>
+            </list>
+        </property>
+    </bean>
+    <service></service>
+</beans>

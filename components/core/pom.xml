@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>jmotor</groupId>
+        <artifactId>components</artifactId>
+        <version>0.0.1</version>
+        <!--<relativePath>../../</relativePath>-->
+    </parent>
+    <groupId>jmotor.core</groupId>
+    <artifactId>core</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+
+    <name>core</name>
+    <url>http://www.aicooc.com</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jmotor-core.version>0.0.1</jmotor-core.version>
+        <jmotor-utility.version>0.0.1</jmotor-utility.version>
+        <log4j.version>1.2.16</log4j.version>
+    </properties>
+
+    <modules>
+        <module>cache</module>
+        <module>ioc</module>
+        <module>persistence</module>
+        <module>log</module>
+        <module>i18n</module>
+    </modules>
+</project>

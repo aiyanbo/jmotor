@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+    <properties src="jmotor/core/connection.properties"/>
+    <properties>
+        <set id="" type="java.util.HashSet">
+            <entry value="uuid1"/>
+        </set>
+        <jmotor.version><![CDATA[0.0.1]]></jmotor.version>
+    </properties>
+    <bean id="person" class="jmotor.core.meta.Person" singleton="true">
+        <property name="age" value="21"/>
+        <property name="sex" value="MAN"/>
+    </bean>
+    <bean id="stu" class="jmotor.core.meta.Student" parent="person" singleton="true" initMethod="init">
+        <property name="id" value="00001"/>
+        <property name="name" value="Andy"/>
+        <property name="sex" value="MAN"/>
+        <property name="description" value="${description}"/>
+        <property name="lineNumber" value="${lineNumber}"/>
+    </bean>
+</beans>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DEMO</title>
+    <script type="text/javascript" src="script/util/Browser.js"></script>
+    <script type="text/javascript" src="script/util/StringTokenizer.js"></script>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+    alert(Browser.getLocale());
+    var tokenizer = new StringTokenizer("zh|CN", '|');
+    while (tokenizer.hasMoreTokens()) {
+        alert(tokenizer.nextToken());
+    }
+</script>
+</html>

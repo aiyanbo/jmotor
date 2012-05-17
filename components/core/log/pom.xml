@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>core</artifactId>
+        <groupId>jmotor.core</groupId>
+        <version>0.0.1</version>
+    </parent>
+    <groupId>jmotor.core.log</groupId>
+    <artifactId>log</artifactId>
+    <version>${project.parent.version}</version>
+    <packaging>jar</packaging>
+
+    <name>log</name>
+    <url>http://www.aicooc.com</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <log.version>1.2.16</log.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>jmotor.util</groupId>
+            <artifactId>utility</artifactId>
+            <version>${jmotor-utility.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+</project>

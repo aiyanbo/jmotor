@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>components</artifactId>
+        <groupId>jmotor</groupId>
+        <version>0.0.1</version>
+    </parent>
+    <groupId>jmotor.swing</groupId>
+    <artifactId>swing</artifactId>
+    <version>${project.parent.version}</version>
+    <name>swing</name>
+    <url>http://www.aicooc.com</url>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jmotor.util.version>0.0.1</jmotor.util.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>jmotor.util</groupId>
+            <artifactId>utility</artifactId>
+            <version>${jmotor.util.version}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+</project>

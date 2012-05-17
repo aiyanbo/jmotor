@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>jmotor.core</groupId>
+        <artifactId>core</artifactId>
+        <version>0.0.1</version>
+    </parent>
+    <groupId>jmotor.core.i18n</groupId>
+    <artifactId>i18n</artifactId>
+    <version>${project.parent.version}</version>
+    <packaging>jar</packaging>
+
+    <name>i18n</name>
+    <url>http://www.aicooc.com</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>jmotor.util</groupId>
+            <artifactId>utility</artifactId>
+            <version>${jmotor-utility.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>jmotor.core.cache</groupId>
+            <artifactId>cache</artifactId>
+            <version>${jmotor-core.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>chardet</groupId>
+            <artifactId>chardet</artifactId>
+            <version>1.0.3</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/3party/juniversalchardet-1.0.3.jar</systemPath>
+        </dependency>
+    </dependencies>
+</project>
