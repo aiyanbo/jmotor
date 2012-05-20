@@ -22,17 +22,16 @@ import java.net.URL;
  * @author Andy.Ai
  */
 public class BeanBusFactory {
-    private static BeanBusFactory instance = new BeanBusFactory();
-    private BeanBusManager beanBus;
+    private static BeanBusManager beanBus;
 
     private BeanBusFactory() {
     }
 
-    public BeanBusManager createBeanBus() {
+    public static BeanBusManager createBeanBus() {
         return createBeanBus("/beanbus.xml");
     }
 
-    public BeanBusManager createBeanBus(String path) {
+    public static BeanBusManager createBeanBus(String path) {
         InputStream is = StreamUtils.getStream4ClassPath(path);
         BeanBusManager beanBusManager = createBeanBus(is);
         try {
@@ -43,7 +42,7 @@ public class BeanBusFactory {
         return beanBusManager;
     }
 
-    public BeanBusManager createBeanBus(URL url) {
+    public static BeanBusManager createBeanBus(URL url) {
         try {
             InputStream is = url.openStream();
             BeanBusManager beanBusManager = createBeanBus(is);
@@ -54,7 +53,7 @@ public class BeanBusFactory {
         }
     }
 
-    public BeanBusManager createBeanBus(InputStream inputStream) {
+    public static BeanBusManager createBeanBus(InputStream inputStream) {
         XmlContextLoader xmlContextLoader = new XmlContextLoaderImpl();
         Document document;
         try {
@@ -70,11 +69,7 @@ public class BeanBusFactory {
         return beanBus;
     }
 
-    public BeanBusManager getBeanBus() {
+    public static BeanBusManager getBeanBus() {
         return beanBus;
-    }
-
-    public static BeanBusFactory getInstance() {
-        return instance;
     }
 }
