@@ -20,7 +20,7 @@ public class AppTest {
     @Test
     public void testIoc() {
         ApplicationContext.debug = true;
-        BeanBusManager beanBusManager = BeanBusFactory.createBeanBus("jmotor/core/beanbus.xml");
+        BeanBusManager beanBusManager = BeanBusFactory.createBeanBus("config/beanbus.xml");
         BeanConfigurationPool beanConfigurationPool = ApplicationContext.getBeanConfigurationPool();
         for (int i = 0; i < 100; i++) {
             beanConfigurationPool.get("stu");
@@ -43,7 +43,7 @@ public class AppTest {
 
     @Test
     public void testGetBus() {
-        BeanBusFactory.createBeanBus("jmotor/core/beanbus.xml");
+        BeanBusFactory.createBeanBus("config/beanbus.xml");
         BeanBusManager beanBusManager = BeanBusFactory.getBeanBus();
         Student stu = beanBusManager.getBean("stu");
         System.out.println(stu.toString());
