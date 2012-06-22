@@ -1,6 +1,5 @@
 package jmotor.core.ioc.meta;
 
-import jmotor.core.ioc.type.ResourceType;
 import org.dom4j.Document;
 
 import java.io.Serializable;
@@ -17,7 +16,7 @@ import java.util.Properties;
 public class DocumentQueue implements Serializable {
     private static final long serialVersionUID = -6849794470754667710L;
     private String path;
-    private ResourceType type;
+    private String type;
     private Document document;
     private List<Properties> resources;
 
@@ -29,11 +28,11 @@ public class DocumentQueue implements Serializable {
         this.path = path;
     }
 
-    public ResourceType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(ResourceType type) {
+    public void setType(String type) {
         this.type = type;
     }
 

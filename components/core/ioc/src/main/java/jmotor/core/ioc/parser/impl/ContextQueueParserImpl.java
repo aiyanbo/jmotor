@@ -1,22 +1,20 @@
 package jmotor.core.ioc.parser.impl;
 
 import jmotor.core.ioc.config.ImportConfiguration;
-import jmotor.core.ioc.context.ApplicationContextConstant;
 import jmotor.core.ioc.context.ContextPath;
 import jmotor.core.ioc.exception.ContextLoaderException;
 import jmotor.core.ioc.extractor.XmlContextExtractor;
 import jmotor.core.ioc.extractor.impl.XmlContextExtractorImpl;
-import jmotor.core.ioc.loader.ContextLoaderAdapter;
-import jmotor.core.ioc.meta.Context;
 import jmotor.core.ioc.meta.DocumentQueue;
 import jmotor.core.ioc.parser.ContextQueueParser;
-import jmotor.core.ioc.type.ResourceType;
 import jmotor.util.CollectionUtils;
+import jmotor.util.ResourceUtils;
 import jmotor.util.StreamUtils;
 import jmotor.util.StringUtils;
 import jmotor.util.XmlUtils;
+import jmotor.util.dto.ResourceDto;
+import jmotor.util.type.ResourceType;
 import org.dom4j.Document;
-import org.dom4j.DocumentException;
 import org.dom4j.Node;
 
 import java.io.IOException;
@@ -33,7 +31,6 @@ import java.util.Properties;
  * @author Andy.Ai
  */
 public class ContextQueueParserImpl implements ContextQueueParser {
-    private ContextLoaderAdapter contextLoaderAdapter;
 
     public List<DocumentQueue> loadQueue(Document document) throws ContextLoaderException {
         List<DocumentQueue> queues = new ArrayList<DocumentQueue>();
@@ -48,14 +45,14 @@ public class ContextQueueParserImpl implements ContextQueueParser {
             for (Node importNode : importNodes) {
                 XmlContextExtractor importNodeExtractor = new XmlContextExtractorImpl(importNode);
                 String src = importNodeExtractor.extractAttribute(ContextPath.SRC);
-                Context context = contextLoaderAdapter.loadContext(src);
                 DocumentQueue documentQueue = new DocumentQueue();
-                documentQueue.setType(context.getType());
-                documentQueue.setPath(context.getPath());
                 try {
-                    documentQueue.setDocument(XmlUtils.loadDocument(context.getData()));
+                    ResourceDto resource = ResourceUtils.getResource(src);
+                    documentQueue.setType(resource.getType());
+                    documentQueue.setPath(resource.getPath());
+                    documentQueue.setDocument(XmlUtils.loadDocument(resource.getData()));
                     documentQueue.setResources(loadPropertiesList(documentQueue.getDocument()));
-                } catch (DocumentException e) {
+                } catch (Exception e) {
                     throw new ContextLoaderException("Can't load document:(" + src + ")");
                 }
                 if (!queues.contains(documentQueue)) {
@@ -65,7 +62,7 @@ public class ContextQueueParserImpl implements ContextQueueParser {
             }
         }
         DocumentQueue mainDocumentQueue = new DocumentQueue();
-        mainDocumentQueue.setType(ResourceType.MAIN_CONTEXT);
+        mainDocumentQueue.setType(ResourceType.MAIN_CONTEXT.toString());
         mainDocumentQueue.setDocument(document);
         mainDocumentQueue.setResources(loadPropertiesList(document));
         queues.add(mainDocumentQueue);
@@ -81,9 +78,9 @@ public class ContextQueueParserImpl implements ContextQueueParser {
                 XmlContextExtractor propertiesNodeExtractor = new XmlContextExtractorImpl(propertiesNode);
                 String src = propertiesNodeExtractor.extractAttribute(ContextPath.SRC);
                 if (StringUtils.isNotBlank(src)) {
-                    Context context = contextLoaderAdapter.loadContext(src);
                     try {
-                        propertiesList.add(StreamUtils.loadProperties(context.getData()));
+                        ResourceDto resource = ResourceUtils.getResource(src);
+                        propertiesList.add(StreamUtils.loadProperties(resource.getData()));
                     } catch (IOException e) {
                         throw new ContextLoaderException("Can't load properties:(" + src + ")");
                     }
@@ -101,7 +98,4 @@ public class ContextQueueParserImpl implements ContextQueueParser {
         return importConfiguration;
     }
 
-    public void setContextLoaderAdapter(ContextLoaderAdapter contextLoaderAdapter) {
-        this.contextLoaderAdapter = contextLoaderAdapter;
-    }
 }

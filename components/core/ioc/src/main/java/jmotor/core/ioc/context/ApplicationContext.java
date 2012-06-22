@@ -1,8 +1,6 @@
 package jmotor.core.ioc.context;
 
 import jmotor.core.ioc.loader.ContextLoader;
-import jmotor.core.ioc.loader.ContextLoaderAdapter;
-import jmotor.core.ioc.loader.impl.ContextLoaderAdapterImpl;
 import jmotor.core.ioc.loader.impl.ContextLoaderImpl;
 import jmotor.core.ioc.parser.ContextParser;
 import jmotor.core.ioc.parser.ContextQueueParser;
@@ -22,24 +20,14 @@ public class ApplicationContext {
     public static boolean debug = false;
     private static ContextParser contextParser;
     private static ContextQueueParser contextQueueParser;
-    private static ContextLoaderAdapter contextLoaderAdapter;
 
     static {
         createContextParser();
-        createContextLoaderAdapter();
         createContextQueueParser();
-    }
-
-    private static void createContextLoaderAdapter() {
-        ContextLoaderAdapterImpl contextLoaderAdapterImpl = new ContextLoaderAdapterImpl();
-        ContextLoader contextLoader = new ContextLoaderImpl();
-        contextLoaderAdapterImpl.setContextLoader(contextLoader);
-        contextLoaderAdapter = contextLoaderAdapterImpl;
     }
 
     private static void createContextQueueParser() {
         ContextQueueParserImpl contextQueueParserImpl = new ContextQueueParserImpl();
-        contextQueueParserImpl.setContextLoaderAdapter(contextLoaderAdapter);
         contextQueueParser = contextQueueParserImpl;
     }
 
@@ -53,10 +41,6 @@ public class ApplicationContext {
 
     public static ContextQueueParser getContextQueueParser() {
         return contextQueueParser;
-    }
-
-    public static ContextLoaderAdapter getContextLoaderAdapter() {
-        return contextLoaderAdapter;
     }
 
     public static BeanConfigurationPool getBeanConfigurationPool() {

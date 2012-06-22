@@ -12,6 +12,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -64,6 +66,10 @@ public class StreamUtils {
 
     public static InputStream getStream4ClassPath(String name) {
         return ClassUtils.getClassLoader().getResourceAsStream(name);
+    }
+
+    public static InputStream getStream4Url(String url) throws IOException {
+        return new URL(url).openStream();
     }
 
     public static InputStream getStream4FileSystem(String path) throws FileNotFoundException {
