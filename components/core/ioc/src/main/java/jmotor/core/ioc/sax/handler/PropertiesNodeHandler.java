@@ -1,7 +1,7 @@
 package jmotor.core.ioc.sax.handler;
 
-import jmotor.core.ioc.config.EntryWrapperConfiguration;
 import jmotor.core.ioc.config.EntryConfiguration;
+import jmotor.core.ioc.config.EntryWrapperConfiguration;
 import jmotor.core.ioc.context.ContextPath;
 import jmotor.util.CollectionUtils;
 import jmotor.util.ObjectUtils;

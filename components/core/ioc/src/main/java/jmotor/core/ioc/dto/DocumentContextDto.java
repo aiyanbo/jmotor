@@ -1,7 +1,7 @@
 package jmotor.core.ioc.dto;
 
-import jmotor.core.ioc.config.EntryWrapperConfiguration;
 import jmotor.core.ioc.config.ElementConfiguration;
+import jmotor.core.ioc.config.EntryWrapperConfiguration;
 
 import java.io.Serializable;
 import java.util.List;

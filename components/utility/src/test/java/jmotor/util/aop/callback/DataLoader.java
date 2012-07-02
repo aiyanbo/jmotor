@@ -1,7 +1,6 @@
 package jmotor.util.aop.callback;
 
 import jmotor.util.ClassUtils;
-import jmotor.util.ObjectUtils;
 import jmotor.util.aop.meta.StudentMeta;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;

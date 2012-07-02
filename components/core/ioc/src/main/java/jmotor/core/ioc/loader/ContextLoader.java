@@ -1,7 +1,6 @@
 package jmotor.core.ioc.loader;
 
 import jmotor.core.ioc.exception.ContextLoaderException;
-import org.dom4j.Document;
 
 import java.io.File;
 import java.io.InputStream;

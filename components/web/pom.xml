@@ -22,6 +22,8 @@
         <jsp-api.version>2.0</jsp-api.version>
         <jstl.version>1.2</jstl.version>
         <jmotor-core-i18n.version>0.0.1</jmotor-core-i18n.version>
+        <jmotor-utility.version>0.0.1</jmotor-utility.version>
+        <jmotor-log.version>0.0.1</jmotor-log.version>
     </properties>
 
     <modules>
@@ -29,6 +31,16 @@
         <module>network-filter</module>
     </modules>
     <dependencies>
+        <dependency>
+            <groupId>jmotor.core.log</groupId>
+            <artifactId>log</artifactId>
+            <version>${jmotor-log.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jmotor.util</groupId>
+            <artifactId>utility</artifactId>
+            <version>${jmotor-utility.version}</version>
+        </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

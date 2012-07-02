@@ -9,7 +9,6 @@ import jmotor.core.ioc.meta.DocumentQueue;
 import jmotor.core.ioc.parser.ContextQueueParser;
 import jmotor.util.CollectionUtils;
 import jmotor.util.ResourceUtils;
-import jmotor.util.StreamUtils;
 import jmotor.util.StringUtils;
 import jmotor.util.XmlUtils;
 import jmotor.util.dto.ResourceDto;
@@ -79,8 +78,7 @@ public class ContextQueueParserImpl implements ContextQueueParser {
                 String src = propertiesNodeExtractor.extractAttribute(ContextPath.SRC);
                 if (StringUtils.isNotBlank(src)) {
                     try {
-                        ResourceDto resource = ResourceUtils.getResource(src);
-                        propertiesList.add(StreamUtils.loadProperties(resource.getData()));
+                        propertiesList.add(ResourceUtils.loadProperties(src));
                     } catch (IOException e) {
                         throw new ContextLoaderException("Can't load properties:(" + src + ")");
                     }

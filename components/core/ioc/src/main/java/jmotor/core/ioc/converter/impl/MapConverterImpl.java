@@ -1,7 +1,7 @@
 package jmotor.core.ioc.converter.impl;
 
-import jmotor.core.ioc.config.EntryWrapperConfiguration;
 import jmotor.core.ioc.config.EntryConfiguration;
+import jmotor.core.ioc.config.EntryWrapperConfiguration;
 import jmotor.core.ioc.converter.EntryValueConverter;
 import jmotor.core.ioc.exception.PropertyCreateException;
 import jmotor.util.ClassUtils;

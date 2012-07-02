@@ -7,8 +7,6 @@ import jmotor.core.ioc.context.BeanConfigurationContext;
 import jmotor.core.ioc.pool.BeanConfigurationPool;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Component:

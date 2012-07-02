@@ -4,8 +4,10 @@ import jmotor.util.meta.Student;
 import junit.framework.TestCase;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class AppTest extends TestCase {
 
@@ -65,5 +67,16 @@ public class AppTest extends TestCase {
 
     public void testMD5() {
         System.out.println(MD5Utils.encode("r"));
+    }
+
+    public void testCountMatch() {
+        String address = "192.169.0.1";
+        System.out.println(StringUtils.countMatches(address, "|"));
+    }
+
+    public void testLoadProperties() throws IOException {
+        Properties properties = ResourceUtils.loadProperties("test.properties");
+        System.out.println(properties.getProperty("allow"));
+        System.out.println(properties.getProperty("deny"));
     }
 }

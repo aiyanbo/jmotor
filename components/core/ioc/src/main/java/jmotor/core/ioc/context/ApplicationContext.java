@@ -1,7 +1,5 @@
 package jmotor.core.ioc.context;
 
-import jmotor.core.ioc.loader.ContextLoader;
-import jmotor.core.ioc.loader.impl.ContextLoaderImpl;
 import jmotor.core.ioc.parser.ContextParser;
 import jmotor.core.ioc.parser.ContextQueueParser;
 import jmotor.core.ioc.parser.impl.ContextParserImpl;

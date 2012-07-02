@@ -5,6 +5,7 @@ import jmotor.util.type.ResourceType;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * Component:
@@ -25,7 +26,7 @@ public class ResourceUtils {
         String type = "";
         String _path = path;
         if (index > 0) {
-            path.substring(0, index);
+            type = path.substring(0, index);
             _path = path.substring(index + 1);
         }
         InputStream inputStream;
@@ -48,5 +49,20 @@ public class ResourceUtils {
         resource.setPath(_path);
         resource.setType(resourceType.name());
         return resource;
+    }
+
+    public static Properties loadProperties(InputStream inputStream) throws IOException {
+        try {
+            Properties properties = new Properties();
+            properties.load(inputStream);
+            return properties;
+        } finally {
+            inputStream.close();
+        }
+    }
+
+    public static Properties loadProperties(String path) throws IOException {
+        ResourceDto resource = getResource(path);
+        return loadProperties(resource.getData());
     }
 }

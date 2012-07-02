@@ -119,6 +119,16 @@ public class StringUtils {
         return result;
     }
 
+    public static int countMatches(String str, String sub) {
+        int count = 0;
+        int index = 0;
+        while ((index = str.indexOf(sub, index)) != -1) {
+            count++;
+            index += sub.length();
+        }
+        return count;
+    }
+
     public static String join(Object[] objects, String separator) {
         StringBuilder result = new StringBuilder(1024);
         for (int i = 0; i < objects.length; i++) {

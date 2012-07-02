@@ -1,7 +1,7 @@
 package jmotor.core.ioc.loader.impl;
 
-import jmotor.core.ioc.loader.XmlContextLoader;
 import jmotor.core.ioc.exception.ContextLoaderException;
+import jmotor.core.ioc.loader.XmlContextLoader;
 import jmotor.util.StreamUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
