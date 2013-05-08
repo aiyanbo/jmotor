@@ -39,8 +39,8 @@ public class StreamUtils {
             }
             return os.toByteArray();
         } finally {
-            inputStream.close();
-            os.close();
+            CloseableUtils.closeQuietly(inputStream);
+            CloseableUtils.closeQuietly(os);
         }
     }
 
@@ -53,7 +53,7 @@ public class StreamUtils {
                 result.append(chars, 0, size);
             }
         } finally {
-            inputStreamReader.close();
+            CloseableUtils.closeQuietly(inputStreamReader);
         }
         return result.toString();
     }
@@ -98,12 +98,8 @@ public class StreamUtils {
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(serializable);
         } finally {
-            if (objectOutputStream != null) {
-                objectOutputStream.close();
-            }
-            if (fileOutputStream != null) {
-                fileOutputStream.close();
-            }
+            CloseableUtils.closeQuietly(objectOutputStream);
+            CloseableUtils.closeQuietly(fileOutputStream);
         }
     }
 
@@ -117,12 +113,8 @@ public class StreamUtils {
             objectInputStream = new ObjectInputStream(fileInputStream);
             result = objectInputStream.readObject();
         } finally {
-            if (objectInputStream != null) {
-                objectInputStream.close();
-            }
-            if (fileInputStream != null) {
-                fileInputStream.close();
-            }
+            CloseableUtils.closeQuietly(objectInputStream);
+            CloseableUtils.closeQuietly(fileInputStream);
         }
         return (T) result;
     }
