@@ -54,4 +54,39 @@ public class NumericUtils {
     private static boolean isOpenRange(String symbol) {
         return "(".equals(symbol) || ")".equals(symbol);
     }
+
+    public static long parseLong(String number) {
+        if (StringUtils.isBlank(number)) {
+            return 0;
+        }
+        return Long.parseLong(formatNumber(number));
+    }
+
+    public static int parseInt(String number) {
+        if (StringUtils.isBlank(number)) {
+            return 0;
+        }
+        return Integer.parseInt(formatNumber(number));
+    }
+
+    public static double parseDouble(String number) {
+        if (StringUtils.isBlank(number)) {
+            return 0;
+        }
+        return Double.parseDouble(formatNumber(number));
+    }
+
+    public static float parseFloat(String number) {
+        if (StringUtils.isBlank(number)) {
+            return 0;
+        }
+        return Float.parseFloat(formatNumber(number));
+    }
+
+    private static String formatNumber(String number) {
+        if (number.contains("_")) {
+            return number.replace("_", "");
+        }
+        return number;
+    }
 }

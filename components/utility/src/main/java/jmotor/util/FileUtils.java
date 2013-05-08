@@ -201,4 +201,12 @@ public class FileUtils {
         }
         return null;
     }
+
+    public static void forceMkdir(File directory) throws IOException {
+        if (!directory.exists()) {
+            if (!directory.mkdirs()) {
+                throw new IOException("Can't create directory");
+            }
+        }
+    }
 }

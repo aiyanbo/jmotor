@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
@@ -23,6 +24,9 @@ import java.util.UUID;
  * @author Andy.Ai
  */
 public class StreamUtils {
+    public static final int EOF = -1;
+    public static final int DEFAULT_BUFFER_SIZE = 1024 * 10;
+
     private StreamUtils() {
     }
 
@@ -30,7 +34,7 @@ public class StreamUtils {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         try {
             int data;
-            while ((data = inputStream.read()) != -1) {
+            while ((data = inputStream.read()) != EOF) {
                 os.write(data);
             }
             return os.toByteArray();
@@ -42,7 +46,7 @@ public class StreamUtils {
 
     public static String transform(InputStreamReader inputStreamReader) throws IOException {
         StringBuilder result = new StringBuilder();
-        char[] chars = new char[1024];
+        char[] chars = new char[DEFAULT_BUFFER_SIZE];
         int size;
         try {
             while ((size = inputStreamReader.read(chars)) > 0) {
@@ -121,5 +125,19 @@ public class StreamUtils {
             }
         }
         return (T) result;
+    }
+
+    public static long copyLarge(InputStream inputStream, OutputStream outputStream) throws IOException {
+        return copyLarge(inputStream, outputStream, new byte[DEFAULT_BUFFER_SIZE]);
+    }
+
+    public static long copyLarge(InputStream input, OutputStream output, byte[] buffer) throws IOException {
+        long count = 0;
+        int size = 0;
+        while (EOF != (size = input.read(buffer))) {
+            output.write(buffer, 0, size);
+            count += size;
+        }
+        return count;
     }
 }
