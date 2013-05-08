@@ -258,4 +258,12 @@ public class StringUtils {
     public static String lastCharacter(String str) {
         return String.valueOf(str.charAt(str.length() - 1));
     }
+
+    public static boolean contains(String str, String separator) {
+        return !isBlank(str) && str.contains(separator);
+    }
+
+    public static String trim(String value) {
+        return value == null ? null : value.trim();
+    }
 }

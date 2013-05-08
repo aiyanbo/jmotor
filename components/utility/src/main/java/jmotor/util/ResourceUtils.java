@@ -3,8 +3,10 @@ package jmotor.util;
 import jmotor.util.dto.ResourceDto;
 import jmotor.util.type.ResourceType;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Properties;
 
 /**
@@ -64,5 +66,39 @@ public class ResourceUtils {
     public static Properties loadProperties(String path) throws IOException {
         ResourceDto resource = getResource(path);
         return loadProperties(resource.getData());
+    }
+
+    public static Properties loadProperties(ClassLoader classLoader, String name) throws IOException {
+        return loadProperties(name, classLoader, false);
+    }
+
+    public static Properties loadProperties(String name, boolean usedFilesystem) throws IOException {
+        return loadProperties(name, Thread.currentThread().getContextClassLoader(), usedFilesystem);
+    }
+
+    public static Properties loadProperties(String name, ClassLoader classLoader, boolean usedFilesystem) throws IOException {
+        InputStream inputStream = null;
+        try {
+            Properties properties = new Properties();
+            if (usedFilesystem) {
+                URL resource = classLoader.getResource(name);
+                if (resource != null) {
+                    inputStream = new FileInputStream(resource.getFile());
+                }
+            } else {
+                inputStream = classLoader.getResourceAsStream(name);
+            }
+            properties.load(inputStream);
+            return properties;
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+        }
+    }
+
+    public static String getProperty(Properties properties, String key) {
+        String value = properties.getProperty(key);
+        return StringUtils.trim(value);
     }
 }
