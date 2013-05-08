@@ -14,6 +14,7 @@ public interface NetworkFilterMBean {
      * fire change the network filter configuration
      *
      * @throws com.yunat.network.exception.NotFoundConfigurationException
+     *
      */
     void fireChangeConfiguration() throws NotFoundConfigurationException;
 }

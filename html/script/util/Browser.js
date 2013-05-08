@@ -1,6 +1,6 @@
 function Browser() {
 }
-Browser.getLocale = function() {
+Browser.getLocale = function () {
     var language = window.navigator.language;
     if (language == null) {
         language = window.navigator.userLanguage;

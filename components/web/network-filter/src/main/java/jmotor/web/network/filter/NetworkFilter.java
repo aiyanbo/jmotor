@@ -34,8 +34,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class NetworkFilter implements Filter, NetworkFilterMBean {
     private static Logger logger = LoggerManager.getLogger(NetworkFilter.class);
-    private static final String ANY_MARK = "*";
-    private static final String COMMA = ",";
     private List<String> deny;
     private List<String> allow;
     private String refusedPath;
@@ -148,7 +146,7 @@ public class NetworkFilter implements Filter, NetworkFilterMBean {
     }
 
     private void handleAddresses(List<String> filters, String addresses) {
-        String[] addressFilters = StringUtils.split(addresses, COMMA);
+        String[] addressFilters = StringUtils.split(addresses, StringUtils.COMMA);
         for (String addressFilter : addressFilters) {
             addressFilter = addressFilter.trim();
             if (addressFilter.contains("~")) {
@@ -215,7 +213,7 @@ public class NetworkFilter implements Filter, NetworkFilterMBean {
         for (String filter : filters) {
             if (filter.equals(_address)) {
                 return true;
-            } else if (StringUtils.contains(filter, ANY_MARK)) {
+            } else if (StringUtils.contains(filter, StringUtils.ANY_MARK)) {
                 String separator = ".";
                 if (StringUtils.contains(_address, ":")) {
                     separator = ":";
@@ -225,7 +223,7 @@ public class NetworkFilter implements Filter, NetworkFilterMBean {
                     String[] filterBytes = StringUtils.split(filter, separator);
                     boolean matched = false;
                     for (int i = 0; i < filterBytes.length; i++) {
-                        if (ANY_MARK.equals(filterBytes[i])) {
+                        if (StringUtils.ANY_MARK.equals(filterBytes[i])) {
                             continue;
                         }
                         matched = filterBytes[i].equals(addressBytes[i]);

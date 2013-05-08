@@ -13,6 +13,8 @@ import java.util.StringTokenizer;
  */
 public class StringUtils {
     public static final String EMPTY = "";
+    public static final String COMMA = ",";
+    public static final String ANY_MARK = "*";
 
     private StringUtils() {
     }

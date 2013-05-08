@@ -3,12 +3,12 @@ function I18nManager(url) {
     this.url = url;
     this.resourceBundleCache = {};
 }
-I18nManager.prototype.setLocale = function(locale) {
+I18nManager.prototype.setLocale = function (locale) {
     this.locale = locale;
 }
-I18nManager.prototype.loadResource = function(url, locale) {
+I18nManager.prototype.loadResource = function (url, locale) {
 
 }
-I18nManager.prototype.toLocale = function(resource) {
+I18nManager.prototype.toLocale = function (resource) {
 
 }

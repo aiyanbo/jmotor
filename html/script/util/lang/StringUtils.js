@@ -1,9 +1,9 @@
-String.prototype.leftTrim = function() {
+String.prototype.leftTrim = function () {
     return this.replace(/^\s+/, "");
 }
-String.prototype.rightTrim = function() {
+String.prototype.rightTrim = function () {
     return this.replace(/\s+$/, "");
 }
-String.prototype.trim = function() {
+String.prototype.trim = function () {
     return this.replace(/^\s+|\s+$/g, "");
 }

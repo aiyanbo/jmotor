@@ -13,12 +13,12 @@ import org.junit.Test;
  *
  * @author Andy.Ai
  */
-public class CacheManagerTest extends TestCase{
+public class CacheManagerTest extends TestCase {
     @Test
-    public void testCache(){
+    public void testCache() {
         Cache cache = CacheManager.getCache("elementConfigCache2");
         Student student = new Student();
-        cache.put("student",student);
+        cache.put("student", student);
         System.out.println(cache);
         System.out.println(cache.get("student"));
     }
