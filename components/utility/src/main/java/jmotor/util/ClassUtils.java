@@ -11,7 +11,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Component:Utility
@@ -21,6 +23,21 @@ import java.util.List;
  * @author Andy.Ai
  */
 public class ClassUtils {
+    private static final Set<Class<?>> PRIMITIVE_CLASSES = new HashSet<Class<?>>();
+
+    static {
+        PRIMITIVE_CLASSES.add(String.class);
+        PRIMITIVE_CLASSES.add(Boolean.class);
+        PRIMITIVE_CLASSES.add(Byte.class);
+        PRIMITIVE_CLASSES.add(Character.class);
+        PRIMITIVE_CLASSES.add(Short.class);
+        PRIMITIVE_CLASSES.add(Integer.class);
+        PRIMITIVE_CLASSES.add(Long.class);
+        PRIMITIVE_CLASSES.add(Double.class);
+        PRIMITIVE_CLASSES.add(Float.class);
+        PRIMITIVE_CLASSES.add(Void.TYPE);
+    }
+
     private ClassUtils() {
     }
 
@@ -229,5 +246,9 @@ public class ClassUtils {
             _clazz = clazz.getSuperclass();
         }
         return _clazz;
+    }
+
+    public static boolean isPrimitiveClass(Class<?> clazz) {
+        return PRIMITIVE_CLASSES.contains(clazz);
     }
 }

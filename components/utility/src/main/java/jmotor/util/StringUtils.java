@@ -270,4 +270,13 @@ public class StringUtils {
     public static String trim(String value) {
         return value == null ? null : value.trim();
     }
+
+    public static String repeat(String content, String separator, int size) {
+        StringBuilder builder = new StringBuilder(content);
+        for (int i = 1; i < size; i++) {
+            builder.append(separator);
+            builder.append(content);
+        }
+        return builder.toString();
+    }
 }

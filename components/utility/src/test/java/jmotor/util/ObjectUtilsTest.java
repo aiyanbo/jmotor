@@ -32,4 +32,10 @@ public class ObjectUtilsTest extends TestCase {
         Student readObject = ObjectUtils.readObject(fileName);
         System.out.println(readObject);
     }
+
+    public void test() {
+        System.out.println(StringUtils.repeat("?", ",", 5));
+    }
+
+
 }
