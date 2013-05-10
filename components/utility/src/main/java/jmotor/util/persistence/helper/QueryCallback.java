@@ -1,6 +1,7 @@
 package jmotor.util.persistence.helper;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Component:
@@ -10,5 +11,5 @@ import java.sql.ResultSet;
  * @author Andy Ai
  */
 public interface QueryCallback<T> {
-    T mappingRow(ResultSet resultSet);
+    T mappingRow(ResultSet resultSet) throws SQLException;
 }
