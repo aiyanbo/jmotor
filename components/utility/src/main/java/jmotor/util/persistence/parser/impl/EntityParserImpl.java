@@ -2,6 +2,7 @@ package jmotor.util.persistence.parser.impl;
 
 import jmotor.util.ClassUtils;
 import jmotor.util.CollectionUtils;
+import jmotor.util.StringUtils;
 import jmotor.util.exception.EntityParseException;
 import jmotor.util.persistence.dto.EntityMapper;
 import jmotor.util.persistence.dto.PropertyMapper;
@@ -27,10 +28,17 @@ public class EntityParserImpl implements EntityParser {
     public EntityMapper getEntityMapper(Class<?> entityClass) throws EntityParseException {
         try {
             PropertyDescriptor[] propertyDescriptors = ClassUtils.getPropertyDescriptors(entityClass);
-            String[] filters = callback.filter(entityClass);
-            String tableName = callback.getTableName(entityClass);
+            String[] filters = null;
+            String tableName = entityClass.getName();
+            String[] appendColumns = null;
+            String[] uniqueNames = null;
+            if (null != callback) {
+                filters = callback.filter(entityClass);
+                tableName = callback.getTableName(entityClass);
+                appendColumns = callback.appendColumns(entityClass);
+                uniqueNames = callback.getPrimaryKeys(entityClass);
+            }
             String identityName = getIdentityName(entityClass, propertyDescriptors);
-            String[] uniqueNames = callback.getPrimaryKeys(entityClass);
             PropertyMapper propertyMapper = new PropertyMapper();
             for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
                 boolean included = true;
@@ -44,11 +52,13 @@ public class EntityParserImpl implements EntityParser {
                     }
                 }
                 if (included) {
-                    String columnName = callback.getColumnName(propertyName, entityClass);
+                    String columnName = StringUtils.nameOfDatabase(propertyName);
+                    if (callback != null) {
+                        callback.getColumnName(propertyName, entityClass);
+                    }
                     propertyMapper.put(propertyName, columnName);
                 }
             }
-            String[] appendColumns = callback.appendColumns(entityClass);
             if (CollectionUtils.isNotEmpty(appendColumns)) {
                 for (String column : appendColumns) {
                     propertyMapper.put(column, column);
