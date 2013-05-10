@@ -13,8 +13,10 @@ import java.util.StringTokenizer;
  */
 public class StringUtils {
     public static final String EMPTY = "";
+    public static final String AND_MARK = "&";
     public static final String COMMA = ",";
-    public static final String ANY_MARK = "*";
+    public static final String SEMICOLON = ";";
+    public static final String QUESTION_MARK = "?";
 
     private StringUtils() {
     }
