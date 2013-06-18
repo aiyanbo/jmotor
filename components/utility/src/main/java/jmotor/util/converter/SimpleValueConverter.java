@@ -23,6 +23,8 @@ public class SimpleValueConverter {
             return Integer.valueOf(value);
         } else if (Double.class.getName().equals(typeName) || "double".equals(typeName)) {
             return Double.valueOf(value);
+        } else if (Float.class.getName().equals(typeName) || "float".equals(typeName)) {
+            return Float.valueOf(value);
         } else if (BigDecimal.class.getName().equals(typeName)) {
             return BigDecimal.valueOf(Double.valueOf(value));
         } else if (Long.class.getName().equals(typeName) || "long".equals(typeName)) {
