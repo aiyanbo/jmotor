@@ -38,4 +38,13 @@ public class SimpleValueConverter {
         }
         return value;
     }
+
+    public static Object convert(String type, String value) {
+        try {
+            Class<?> clazz = Class.forName(type);
+            return convert(clazz, value);
+        } catch (ClassNotFoundException e) {
+            throw new IllegalArgumentException(e.getLocalizedMessage(), e);
+        }
+    }
 }
