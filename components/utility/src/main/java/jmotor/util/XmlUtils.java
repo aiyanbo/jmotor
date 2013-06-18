@@ -1,6 +1,7 @@
 package jmotor.util;
 
 import jmotor.util.converter.SimpleValueConverter;
+import jmotor.util.exception.XMLParserException;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Node;
@@ -44,7 +45,23 @@ public class XmlUtils {
     }
 
     public static Document loadDocument(InputStream inputStream) throws DocumentException {
-        return getReader().read(inputStream);
+        try {
+            return getReader().read(inputStream);
+        } finally {
+            CloseableUtils.closeQuietly(inputStream);
+        }
+    }
+
+    public static Document loadDocument(String name) {
+        InputStream in = null;
+        try {
+            in = StreamUtils.getStream4ClassPath(name);
+            return getReader().read(in);
+        } catch (DocumentException e) {
+            throw new XMLParserException(e.getMessage(), e);
+        } finally {
+            CloseableUtils.closeQuietly(in);
+        }
     }
 
     public static void fillProperties(Object object, Attributes attributes) {
@@ -76,8 +93,12 @@ public class XmlUtils {
 //        factory.setValidating(false);
 //        SAXParser saxParser = factory.newSAXParser();
 //        saxParser.parse(inputStream, saxHandler);
-        InputSource inputSource = new InputSource(inputStream);
-        handleSAX(inputSource, saxHandler);
+        try {
+            InputSource inputSource = new InputSource(inputStream);
+            handleSAX(inputSource, saxHandler);
+        } finally {
+            CloseableUtils.closeQuietly(inputStream);
+        }
     }
 
     public static void handleSAX(InputSource inputSource, DefaultHandler saxHandler)
