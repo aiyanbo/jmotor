@@ -24,6 +24,10 @@ public class I18nProperties extends Properties {
         super.load(reader);
     }
 
+    public void load(String name) throws IOException {
+        load(name, Locale.getDefault());
+    }
+
     public void load(String name, Locale locale) throws IOException {
         String _locale = locale.getLanguage() + "_" + locale.getCountry();
         load(name, _locale);
